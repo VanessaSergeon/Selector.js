@@ -65,14 +65,14 @@ describe("matchFunctionMaker", function() {
     var selector = "img.thumbnail";
     var matcher = matchFunctionMaker(selector);
     var sampleDivEl = document.createElement("img");
-    sampleDivEl.class = "thumbnail"; // element has three different classes on it
+    sampleDivEl.className = "thumbnail"; // element has three different classes on it
     expect(matcher(sampleDivEl)).toEqual(true);
   });
 });
 
 describe("$ selector function", function() {
   var elements;
-  
+
   it("should select one element by id", function() {
     elements = $('#pagetitle');
     expect(elements.length).toEqual(1);
@@ -102,5 +102,5 @@ describe("$ selector function", function() {
     elements = $('h2.small');
     expect(elements.length).toEqual(2);
   });
-  
+
 });
