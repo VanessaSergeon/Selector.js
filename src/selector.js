@@ -13,7 +13,7 @@ var traverseDomAndCollectElements = function(matchFunc, startEl) {
     if(matchFunc(startEl.childNodes[i]) === true) {
       resultSet.push(startEl.childNodes[i]);
     }
-    traverseDomAndCollectElements(matchFunc, startEl.childNodes[i]);
+    resultSet = resultSet.concat(traverseDomAndCollectElements(matchFunc, startEl.childNodes[i]));
   }
 
   return resultSet;
@@ -70,13 +70,27 @@ var matchFunctionMaker = function(selector) {
   } else if (selectorType === "tag.class") {
     // define matchFunction for tag.class
     matchFunction = function(element) {
-      var elAndClass = element.tagName.toLowerCase() + "." + element.className;
-      console.log(elAndClass);
-      if(selector == elAndClass){
-        return true;
+      // var elAndClass = element.tagName.toLowerCase() + "." + element.className;
+      // console.log(elAndClass);
+      // if(selector == elAndClass){
+      //   return true;
+      // } else {
+      //   return false;
+      // }
+      console.log("element tag: " + element.tagName.toLowerCase());
+      console.log("selector tag " + selector.slice(0, element.tagName.length));
+      console.log("element classes: " + element.classList.toString().toLowerCase());
+      console.log("selector class: " + selector.slice(element.tagName.length+1, selector.length));
+      if(element.tagName.toLowerCase() == selector.slice(0, element.tagName.length)) {
+        for(var i = 0; i < element.classList.length; i++) {
+          if(selector.slice(element.tagName.length+1, selector.length).search(element.classList.toString().toLowerCase()) !== -1) {
+            return true;
+          }
+        }
       } else {
         return false;
-      }
+      }// tag matches
+
     };
 
 
