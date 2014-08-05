@@ -58,8 +58,19 @@ var matchFunctionMaker = function(selector) {
       }
     };
 
+
+// solution should not work with multiple class names. fix using .classList
   } else if (selectorType === "tag.class") {
     // define matchFunction for tag.class
+    matchFunction = function(element) {
+      var elAndClass = element.tagName.toLowerCase() + "." + element.className;
+      console.log(elAndClass);
+      if(selector == elAndClass){
+        return true;
+      } else {
+        return false;
+      }
+    };
 
 
   } else if (selectorType === "tag") {
