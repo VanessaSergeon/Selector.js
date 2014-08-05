@@ -36,6 +36,15 @@ var matchFunctionMaker = function(selector) {
   var matchFunction;
   if (selectorType === "id") {
     // define matchFunction for id
+    matchFunction = function(element) {
+      console.log(element.id);
+      console.log("selector:" + selector.substring(1, selector.length));
+      if(element.id == selector.substring(1, selector.length)) {
+        return true;
+      } else {
+        return false
+      }
+    };
 
   } else if (selectorType === "class") {
     // define matchFunction for class
