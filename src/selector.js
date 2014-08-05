@@ -37,8 +37,6 @@ var matchFunctionMaker = function(selector) {
   if (selectorType === "id") {
     // define matchFunction for id
     matchFunction = function(element) {
-      console.log(element.id);
-      console.log("selector:" + selector.substring(1, selector.length));
       if(element.id == selector.substring(1, selector.length)) {
         return true;
       } else {
@@ -48,6 +46,17 @@ var matchFunctionMaker = function(selector) {
 
   } else if (selectorType === "class") {
     // define matchFunction for class
+    matchFunction = function(element) {
+      var listOfClasses = element.classList.toString();
+      // console.log(element.className);
+      // console.log("selector:" + selector.substring(1, selector.length));
+      // var classNames = element.className.split(" ");
+      if((listOfClasses.search(element.className) !== -1)) {
+        return true;
+      } else {
+        return false;
+      }
+    };
 
   } else if (selectorType === "tag.class") {
     // define matchFunction for tag.class
