@@ -61,9 +61,16 @@ var matchFunctionMaker = function(selector) {
   } else if (selectorType === "tag.class") {
     // define matchFunction for tag.class
 
+
   } else if (selectorType === "tag") {
     // define matchFunction for tag
-
+    matchFunction = function(element) {
+      if(selector.search(element) !== -1) {
+        return true;
+      } else {
+        return false;
+      }
+    };
   }
   return matchFunction;
 };
